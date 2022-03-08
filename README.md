@@ -1,7 +1,7 @@
 ### 环境依赖
 
 ``` 
-node v14.16.0
+node v14.16.1
 webpack v4.46.0
 webpack-cli v4.9.2
 ```
