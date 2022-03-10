@@ -54,7 +54,7 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: 'src/index.html',
+			template: 'public/index.html',
 		}),
 		new CleanWebpackPlugin({
 			cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, '../dist')],
@@ -63,7 +63,26 @@ module.exports = {
 	],
 	optimization: {
 		splitChunks: {
-			chunks: 'all',
+			chunks: 'all', // async | initial | all all需要配合cacheGroups使用
+			minSize: 30000, // 大于30kb 进行分割
+			maxSize: 0, // 超过maxsize 尝试二次分割
+			minChunks: 1, // 模块使用多少次，分割
+			maxAsyncRequests: 5,
+			maxInitialRequests: 3,
+			automaticNameDelimiter: '~',
+			name: true,
+			cacheGroups: {
+				vendors: {
+					test: /[\\/]node_modules[\\/]/,
+					priority: -10, // 优先级
+					// filename: 'vender.js', // 分割文件名
+				},
+				default: {
+					// minChunks: 2,
+					priority: -20,
+					reuseExistingChunk: true, // 忽略打包过的模块
+				},
+			},
 		},
 	},
 	output: {

@@ -23,6 +23,7 @@
     //     "version": "7.0.0-beta.0"
     //   }
     // ]
-    ["dynamic-import-webpack"]
+
+    ["@babel/plugin-syntax-dynamic-import"]
   ]
 }
